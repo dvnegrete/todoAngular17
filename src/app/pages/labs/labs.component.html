@@ -1,6 +1,41 @@
 <h1>{{ title }}</h1>
 <ul>
-    @for (task of tasks; track $index) {
-        <li>{{ task }}</li>
+    @for (task of tasks(); track $index) {
+        <li>{{ task }} - {{ $index }}  </li>
     }
 </ul>
+
+
+<!-- Property Binding -->
+<hr>
+<input type="text" [value]="name">
+<button [disabled]="disabled">Click</button>
+
+<!-- Event Binding -->
+<hr>
+<button (click)="handlerClick()">Aqui estoy</button>
+<button (dblclick)="handlerDoubleClick()">Doble Click</button>
+<input type="number" (change)="changeHandler($event)">
+<input type="text" (keydown)="keyDownHandler($event)">
+<input type="text" (keydown.shift.t)="handlerClick()">
+
+<!-- Signals -->
+<hr>
+
+<!-- ngSwtich -->
+<div [ngSwitch]="name()">
+    <p *ngSwitchCase="'nico'">Yo soy nico</p>
+    <p *ngSwitchCase="'dvn'">Yo soy dvn</p>
+    <p *ngSwitchCase="'ana'">Yo soy ana</p>
+    <p *ngSwitchCase="'valentin'">Yo soy valentin</p>
+    <p *ngSwitchDefault>No soy nadie</p>
+</div>
+<p>Cambia tu nombre</p>
+<input type="text" (change)="changeName($event)">
+
+<!-- FormControl -->
+<hr>
+<h5>Form Control</h5>
+<input type="color" [formControl]="colorControl">
+<p>Color: {{ colorControl.value }} </p>
+
